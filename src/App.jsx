@@ -1,15 +1,19 @@
 import './App.css';
-import { useState } from 'react';
 import { useMovies } from './hooks/useMovies.js';
+import { useSearch } from './hooks/useSearch.js';
 import { Movies } from './components/Movies.jsx';
 
 function App() {
-  const [query, setQuery] = useState('');
-  const { movies } = useMovies(query);
+  const { search, setSearch, error } = useSearch();
+  const { movies } = useMovies();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setQuery(event.target.elements.search.value);
+    console.log(search);
+  };
+
+  const handleChange = (event) => {
+    setSearch(event.target.value);
   };
 
   return (
@@ -18,12 +22,15 @@ function App() {
         <h1>Buscador de películas</h1>
         <form className='form' onSubmit={handleSubmit}>
           <input
-            name='search'
+            onChange={handleChange}
+            value={search}
+            name='query'
             type='text'
             placeholder='Avengers, Star Wars, Batman...'
           />
           <button type='submit'>Buscar</button>
         </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
 
       <main>
