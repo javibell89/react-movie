@@ -3,11 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 800px;
 }
 
 main {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 form {
@@ -16,41 +19,26 @@ form {
   align-items: center;
 }
 
-ul {
+.movies {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
 }
 
-li {
-  border: 1px solid #dbdbdb;
-  border-radius: 6px;
+.movie {
   text-align: center;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
-li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Opcional: añade una sombra para mejorar el efecto */
+.movie h3,
+.movie p {
+  margin: 0;
 }
 
-li > img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  margin-top: auto; /* Empuja la imagen hacia abajo */
-}
-
-li > h3 {
-  margin: 0.25 rem;
-}
-
-li > p {
-  margin: 0.25 rem;
+.movie img {
+  border-radius: 8px;
+  margin-top: 16px;
 }
