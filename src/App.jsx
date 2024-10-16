@@ -5,11 +5,11 @@ import { Movies } from './components/Movies.jsx';
 
 function App() {
   const { search, setSearch, error } = useSearch();
-  const { movies } = useMovies();
+  const { movies, getMovies, loading } = useMovies({ search });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(search);
+    getMovies();
   };
 
   const handleChange = (event) => {
@@ -33,9 +33,7 @@ function App() {
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </header>
 
-      <main>
-        <Movies movies={movies} />
-      </main>
+      <main>{loading ? <p>Cargando...</p> : <Movies movies={movies} />}</main>
     </div>
   );
 }
